@@ -1612,7 +1612,7 @@ nav {
         <label>Job Requirements <span class="char-count" id="emp-req-count">0/500</span></label>
         <textarea class="form-textarea" placeholder="Describe the roles, skills, and any specific requirements…" id="emp-req" maxlength="500" oninput="charCount(this,'emp-req-count')"></textarea>
       </div>
-      <button class="btn-submit" onclick="submitEmployer()">Send Hiring Request →</button>
+      <button class="btn-submit" onclick="submitEmployer(this)">Send Hiring Request →</button>
     </div>
     <div class="form-success" id="empSuccess">
       <div class="form-success-icon">✅</div>
@@ -1667,7 +1667,7 @@ nav {
           <div class="file-name" id="applyFileName"></div>
         </div>
       </div>
-      <button class="btn-submit" onclick="submitApplication()">Submit Application →</button>
+      <button class="btn-submit" onclick="submitApplication(this)">Submit Application →</button>
     </div>
     <div class="form-success" id="applySuccess">
       <div class="form-success-icon">🚀</div>
@@ -1718,7 +1718,7 @@ nav {
           <option>Employer / HR</option>
         </select>
       </div>
-      <button class="btn-submit" onclick="submitCallback()">Request Callback →</button>
+      <button class="btn-submit" onclick="submitCallback(this)">Request Callback →</button>
     </div>
     <div class="form-success" id="cbSuccess">
       <div class="form-success-icon">📞</div>
@@ -1756,7 +1756,7 @@ nav {
         <label>Message <span class="req">*</span> <span class="char-count" id="ct-msg-count">0/500</span></label>
         <textarea class="form-textarea" placeholder="How can we help?" id="ct-msg" maxlength="500" oninput="charCount(this,'ct-msg-count')"></textarea>
       </div>
-      <button class="btn-submit" onclick="submitContact()">Send Message →</button>
+      <button class="btn-submit" onclick="submitContact(this)">Send Message →</button>
     </div>
     <div class="form-success" id="contactSuccess">
       <div class="form-success-icon">💌</div>
@@ -2441,7 +2441,7 @@ function submitCV() {
   }, 1800);
 }
 
-function submitEmployer() {
+function submitEmployer(btn) {
   const name = document.getElementById('emp-name');
   const email = document.getElementById('emp-email');
   const company = document.getElementById('emp-company');
@@ -2450,7 +2450,6 @@ function submitEmployer() {
   if(!company.value.trim()) { showFieldError(company,'Please enter your company name.'); return; }
   if(!validateEmail(email.value)) { showFieldError(email,'Please enter a valid work email.'); return; }
   if(!validatePhone(phone.value)) { showFieldError(phone,'Please enter a valid phone number.'); return; }
-  const btn = event.target;
   setLoading(btn, true);
   setTimeout(() => {
     setLoading(btn, false);
@@ -2460,14 +2459,13 @@ function submitEmployer() {
   }, 1800);
 }
 
-function submitApplication() {
+function submitApplication(btn) {
   const name = document.getElementById('apply-name');
   const email = document.getElementById('apply-email');
   const phone = document.getElementById('apply-phone');
   if(!name.value.trim()) { showFieldError(name,'Please enter your name.'); return; }
   if(!validateEmail(email.value)) { showFieldError(email,'Please enter a valid email.'); return; }
   if(!validatePhone(phone.value)) { showFieldError(phone,'Please enter a valid phone number.'); return; }
-  const btn = event.target;
   setLoading(btn, true);
   setTimeout(() => {
     setLoading(btn, false);
@@ -2477,12 +2475,11 @@ function submitApplication() {
   }, 1800);
 }
 
-function submitCallback() {
+function submitCallback(btn) {
   const name = document.getElementById('cb-name');
   const phone = document.getElementById('cb-phone');
   if(!name.value.trim()) { showFieldError(name,'Please enter your name.'); return; }
   if(!validatePhone(phone.value)) { showFieldError(phone,'Please enter a valid phone number.'); return; }
-  const btn = event.target;
   setLoading(btn, true);
   setTimeout(() => {
     setLoading(btn, false);
@@ -2492,7 +2489,7 @@ function submitCallback() {
   }, 1500);
 }
 
-function submitContact() {
+function submitContact(btn) {
   const name = document.getElementById('ct-name');
   const email = document.getElementById('ct-email');
   const subject = document.getElementById('ct-subject');
@@ -2501,7 +2498,6 @@ function submitContact() {
   if(!validateEmail(email.value)) { showFieldError(email,'Please enter a valid email.'); return; }
   if(!subject.value) { showFieldError(subject,'Please select a subject.'); return; }
   if(!msg.value.trim() || msg.value.length < 10) { showFieldError(msg,'Please enter a message (min 10 characters).'); return; }
-  const btn = event.target;
   setLoading(btn, true);
   setTimeout(() => {
     setLoading(btn, false);
